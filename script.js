@@ -57,3 +57,26 @@ window.addEventListener('scroll', () => {
         header.style.padding = '1.5rem 0';
     }
 });
+
+// Contact Form Handling
+const contactForm = document.querySelector('.contact-form');
+const hiddenIframe = document.getElementById('hidden_iframe');
+const successModal = document.getElementById('success-modal');
+const closeModal = document.getElementById('close-modal');
+let submitted = false;
+
+contactForm.addEventListener('submit', () => {
+    submitted = true;
+});
+
+hiddenIframe.addEventListener('load', () => {
+    if (submitted) {
+        successModal.classList.remove('hidden');
+        contactForm.reset();
+        submitted = false;
+    }
+});
+
+closeModal.addEventListener('click', () => {
+    successModal.classList.add('hidden');
+});
